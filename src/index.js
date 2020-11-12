@@ -2,10 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { setGlobal } from 'reactn';
+
+const getDarkModeState = () => {
+  let dataFromStorage = localStorage.getItem('darkMode')
+  return dataFromStorage !== null ? (dataFromStorage == 'true' ? true : false) : false;
+}
+
+setGlobal({
+    darkMode:getDarkModeState()
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );

@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	cardContent: {
 		padding:theme.spacing(1)
+	},
+	cardAction: {
+		padding:theme.spacing(0, .5, .5, .5)
 	}
 }));
 
@@ -52,7 +55,7 @@ export default function CustomCards(props) {
 		/>
 		<CardHeader className={classes.cardHeader}
 			title={props.title}
-			subheader="September 14, 2016"
+			subheader={props.subheader ? props.subheader : ''}
 		/>
 		<CardContent className={classes.cardContent}>
 			<Typography variant="body2" color="textSecondary" component="p">
@@ -60,7 +63,7 @@ export default function CustomCards(props) {
 			guests. Add 1 cup of frozen peas along with the mussels, if you like.
 			</Typography>
 		</CardContent>
-		<CardActions disableSpacing>
+		<CardActions disableSpacing className={classes.cardAction}>
 			<IconButton aria-label="add to favorites">
 			<FavoriteIcon />
 			</IconButton>
