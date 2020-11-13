@@ -9,13 +9,27 @@
   font-family: 'Inter';
   font-style: bold;
   src: url('./assets/fonts/inter/Inter-ExtraBold-slnt=0.ttf'); /* IE9 Compat Modes */
-  src: local('Inter'), local('Inter'),url('./assets/fonts/inter/Inter-ExtraBold-slnt=0.ttf') format('truetype')
+  src: local('InterBold'), local('InterBold'),url('./assets/fonts/inter/Inter-ExtraBold-slnt=0.ttf') format('truetype')
+}
+
+@font-face {
+  font-family: 'Visby';
+  font-style: normal;
+  src: url('./assets/fonts/visbycf/VisbyCF-Bold.woff2'); /* IE9 Compat Modes */
+  src: local('Visby'), local('Visby'),url('./assets/fonts/visbycf/VisbyCF-Bold.woff2') format('woff2')
+}
+
+@font-face {
+  font-family: 'VisbyBold';
+  font-style: bold;
+  src: url('./assets/fonts/visbycf/VisbyCF-ExtraBold.woff2'); /* IE9 Compat Modes */
+  src: local('VisbyBold'), local('VisbyBold'),url('./assets/fonts/visbycf/VisbyCF-ExtraBold.woff2') format('woff2')
 }
 
 .transition300 {
   transition: all .3s ease-in-out;
 }
 
-body {
+#root {
   font-family: 'Inter';
 }

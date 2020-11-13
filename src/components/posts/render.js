@@ -28,11 +28,11 @@ const RenderArticles = () => {
     const classes = useStyles();
     return (
         <Grid container direction="row" justify={elementPos} alignItems="center">
-            {articleLoading ? <CircularProgress style={{marginTop:30}} size={100}/> : ''}
+            {articleLoading ? <CircularProgress color="inherit" style={{marginTop:30}} size={100}/> : ''}
             {articles.map(item => {
                 return(
                     <Grid key={item.id} item className={classes.articleCards} lg={4} sm={6}>
-                        <CustomCards title={item.name}/>
+                        <CustomCards title={item.name} imageMedia="https://source.unsplash.com/random"/>
                     </Grid>
                 )    
             })}

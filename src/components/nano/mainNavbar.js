@@ -12,11 +12,21 @@ import { NavLink, Link as RouterLink } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 	root: {
         boxShadow:'none',
-        transition: 'all .3s ease-in-out!important'
+        transition: 'all .3s ease-in-out!important',
+        '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom:'-2px',
+            left:'1vw',
+            zIndex: -1,
+            background: 'transparent',
+            boxShadow: '0 0 200px 30px rgba(0,0,0,0.3) inset',
+            borderRadius: '70%',
+            transform: 'translateZ(0)',
+            height:5,
+            width:'98vw'
+        }
     },
-	menuButton: {
-	  	marginRight: theme.spacing(2),
-	},
 	title: {
 	  	flexGrow: 1,
     },
@@ -35,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             textDecoration:'none'
         }
+    },
+    topNavLink:{
+        marginRight:theme.spacing(2)
     }
 
 }));
@@ -149,15 +162,20 @@ const MainNavbar = (props) => {
             {MenuDrawer("top")}
         </Drawer>
         <Box display={{ xs: 'none', sm: 'none', md: 'block' }} >
-            <AppBar position="static" className={classes.root} color="primary">
+            <AppBar position="static" className={classes.roox} color="primary">
                 <Toolbar variant="dense">
-                    test
+                    <Link className={classes.topNavLink} color="inherit" href="http://sas.smkbintarjalancagak.sch.id/">
+                        SAS
+                    </Link>
+                    <Link className={classes.topNavLink} color="inherit" href="http://psb.smkbintarjalancagak.sch.id/">
+                        Pendaftaran Siswa Baru
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>
         <HideOnScroll {...props}>
-            <AppBar position="sticky" className={classes.root} color={elevationTrigger ? 'default' : 'transparent'} style={{
-                padding: elevationTrigger ? '0rem' : '1.2rem 0rem 1.2rem 0rem'
+            <AppBar position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'default' : 'transparent'} className={classes.root} style={{
+                padding: elevationTrigger ? '0rem' : '1.5rem 0rem 1.5rem 0rem',
             }}>
                 <Container maxWidth="lg">
                     <Toolbar>

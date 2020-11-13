@@ -35,11 +35,13 @@ export default function CustomCards(props) {
 
 	return (
 		<Card className="animate__animated animate__fadeIn">
-		<CardMedia
-			className={classes.media}
-			image="https://www.robinwieruch.de/static/0216e3228bb8c39f7e4ea01b629f1ec2/9842e/banner.jpg"
-			title="Paella dish"
-		/>
+		{ props.imageMedia ? 
+			<CardMedia
+				className={classes.media}
+				image={props.imageMedia}
+				title="Paella dish"
+			/> : ''
+		}
 		<CardHeader className={classes.cardHeader}
 			title={props.title}
 			subheader={props.subheader ? props.subheader : ''}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import RenderArticles from './render';
@@ -24,6 +24,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Posts = () => {
+
+	useEffect(() => {
+		document.title = 'Postingan';
+	}, [])
 
 	const classes = useStyles();
 
