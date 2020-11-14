@@ -2,11 +2,13 @@ import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { Grid, Typography, Container, Divider, Card, CardContent, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import HeadMaster from '../../assets/images/kepalasekolah.png'
-import aboutBackground from '../../assets/images/tefa.jpg'
-import { CustomButton } from '../styling';
+import HeadMaster from '../../../assets/images/kepalasekolah.png'
+import aboutBackground from '../../../assets/images/tefa.jpg'
+import { CustomButton } from '../../styling';
 import { ArrowForward } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+
+import backgroundHeader from '../../../assets/images/backgroundHeader.jpg'
 
 const useStyles = makeStyles((theme) => ({
 	title: {
@@ -23,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
 		fontFamily: 'Inter',
 		fontWeight: 'Bold'
 	},
+	mainHeader:{
+		background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
+	},
 	boxIntro:{
 		margin: theme.spacing(15, 0, 15, 0)
 	},
@@ -31,6 +36,15 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor:'white',
 		color:'black',
 		boxShadow: '0px 0px 35px 1px rgba(122,122,122,0.46)'
+	},
+	boxMaps:{
+		padding: theme.spacing(15, 0, 15, 0),
+	},
+	fullWidthContainer: {
+		maxWidth: '100vw',
+	},
+	backgroundTheme: {
+		backgroundColor:theme.palette.background.default
 	},
 	aboutReadMore: {
 		marginTop: theme.spacing(4)
@@ -44,6 +58,15 @@ const Main = () => {
 
 	useEffect(() => {
 		document.title = 'Beranda';
+		const mainContentDOM = document.querySelector('#body');
+		
+		if (mainContentDOM !== null) {
+			let { style } = mainContentDOM;
+			style.backgroundImage = `url(${backgroundHeader})`
+			style.backgroundPosition = 'center center'
+			style.backgroundRepeat = 'no-repeat'
+			style.backgroundSize = 'cover'
+		}
 	}, [])
 
 	const classes = useStyles();
@@ -105,7 +128,7 @@ const Main = () => {
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
-					<Grid container spacing={2} className={classes.mt4}>
+					<Grid container spacing={2} className={classes.mt4} direction="row" justify="center">
 						<CardWhy title="Sekolah Terbaik">
 							SMK Bina Taruna Jalancagak adalah SMK terbaik di Wilayah Subang
 						</CardWhy>
@@ -163,7 +186,7 @@ const Main = () => {
 
 	const Maps = () => {
 		return(
-			<Grid container className={classes.boxIntro}>
+			<Grid container className={clsx(classes.boxMaps, classes.backgroundTheme)}>
 				<Grid item xs={12} style={{marginBottom:30}}>
 					<Typography variant="h4" align="center" style={{marginBottom:10}}>
 						Temukan Kami
@@ -178,7 +201,7 @@ const Main = () => {
 
 	return (
 		<div className="animate__animated animate__fadeIn">
-			<Grid container>
+			<Grid container id="mainHeader" className={classes.mainHeader}>
 				<Grid container>
 					<Grid item xs={12} className={classes.title}>
 						<Typography variant="h1" align="center" className={classes.titleText}>
@@ -196,9 +219,11 @@ const Main = () => {
 			<Grid container className={classes.aboutBG}>
 				<About />
 			</Grid>
-			<Container maxWidth="lg">	
-				<Why />
-			</Container>
+			<Grid container className={classes.backgroundTheme}>
+				<Container maxWidth="lg">	
+					<Why />
+				</Container>
+			</Grid>
 			<Affiliation />
 			<Maps />
 		</div>

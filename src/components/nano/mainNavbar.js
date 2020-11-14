@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
             content: '""',
             position: 'absolute',
             bottom:'-2px',
-            left:'1vw',
+            left:'2px',
             zIndex: -1,
             background: 'transparent',
             boxShadow: '0 0 200px 30px rgba(0,0,0,0.3) inset',
             borderRadius: '70%',
             transform: 'translateZ(0)',
             height:5,
-            width:'98vw'
+            width:'calc(100vw - 20px)'
         }
     },
 	title: {
@@ -73,7 +73,7 @@ const MainNavbar = (props) => {
 
     const elevationTrigger = useScrollTrigger({
         disableHysteresis: true,
-        threshold: 0,
+        threshold: 20,
         target: window ? window() : undefined,
     });
 
@@ -174,7 +174,7 @@ const MainNavbar = (props) => {
             </AppBar>
         </Box>
         <HideOnScroll {...props}>
-            <AppBar position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'default' : 'transparent'} className={classes.root} style={{
+            <AppBar id="mainNavbar" position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'default' : 'transparent'} className={classes.root} style={{
                 padding: elevationTrigger ? '0rem' : '1.5rem 0rem 1.5rem 0rem',
             }}>
                 <Container maxWidth="lg">
