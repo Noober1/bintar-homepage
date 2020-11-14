@@ -10,8 +10,13 @@ const getDarkModeState = () => {
   return dataFromStorage !== null ? (dataFromStorage == 'true' ? true : false) : false;
 }
 
+const getNavBarIndicator = () => {
+  let dataFromStorage = localStorage.getItem('navBarIndicator')
+  return dataFromStorage !== null ? dataFromStorage : '/';
+}
+
 setGlobal({
-    navBarIndicator:'/',
+    navBarIndicator:getNavBarIndicator(),
     darkMode:getDarkModeState()
 });
 

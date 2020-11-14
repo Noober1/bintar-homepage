@@ -10,7 +10,13 @@ const AppContainer = (props) => {
 
 	useEffect(() => {
 
-		setIndicator(history.location.pathname)
+		const saveIndicatorState = () => {
+			let path = history.location.pathname;
+			setIndicator(path)
+			localStorage.setItem('navBarIndicator',path)
+		}
+
+		saveIndicatorState()
 
 		const rootDOM = document.querySelector('#body');
 
@@ -32,7 +38,7 @@ const AppContainer = (props) => {
 		trigger()
 
 		history.listen((location, action) => {
-			setIndicator(history.location.pathname)
+			saveIndicatorState()
 			trigger()
 		})
 		
