@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { Toolbar, IconButton, Typography, Tooltip, AppBar, Zoom, Avatar, Link, Container, Box, List, ListItem, Divider, ListItemIcon, ListItemText, Drawer, Button, useScrollTrigger, Slide,  } from '@material-ui/core'
 import { Menu as MenuIcon, Star, Brightness4, Brightness7 } from '@material-ui/icons'
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,23 +13,13 @@ import { NavLink, Link as RouterLink } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 	root: {
         boxShadow:'none',
-        transition: 'all .3s ease-in-out!important',
-        '&::after': {
-            content: '""',
-            position: 'absolute',
-            bottom:'-2px',
-            left:'2px',
-            zIndex: -1,
-            background: 'transparent',
-            boxShadow: '0 0 200px 30px rgba(0,0,0,0.3) inset',
-            borderRadius: '70%',
-            transform: 'translateZ(0)',
-            height:5,
-            width:'calc(100vw - 20px)'
-        }
+        transition: 'all .3s ease-in-out!important'
     },
 	title: {
 	  	flexGrow: 1,
+    },
+    withBackground:{
+        // backgroundColor:theme.palette.primary.main
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -37,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
         width: theme.spacing(6),
         height: theme.spacing(6),
         marginRight: theme.spacing(5)
-    },
-    box: {
-        marginRight:theme.spacing(5),
     },
     customLink:{
         '&:hover': {
@@ -103,6 +91,7 @@ const MainNavbar = (props) => {
     ]
 
     const [ darkMode, setDarkMode ] = useGlobal('darkMode');
+    const [ indicator, setIndicator ] = useGlobal('navBarIndicator');
 
     const [state, setState] = React.useState({
         top: false,
@@ -133,12 +122,12 @@ const MainNavbar = (props) => {
         >
             <List>
             {links.map((item, index) => (
-                <ListItem button key={item.to}>
-                <ListItemIcon><Star /></ListItemIcon>
                 <Link color="inherit" component={RouterLink} to={item.to} className={classes.customLink}>
-                    <ListItemText>{item.text}</ListItemText>
+                    <ListItem button key={item.to}>
+                    <ListItemIcon><Star /></ListItemIcon>
+                        <ListItemText>{item.text}</ListItemText>
+                    </ListItem>
                 </Link>
-                </ListItem>
             ))}
             </List>
         </div>
@@ -146,7 +135,7 @@ const MainNavbar = (props) => {
     
     const CustomLink = (props) => {
         return(
-            <Box display={{ xs: 'none', sm: 'none', md: 'block' }} className={classes.box}>
+            <Box display={{ xs: 'none', sm: 'none', md: 'block' }}>
                 <Link color="inherit" component={RouterLink} to={props.to} className={classes.customLink}>
                     <Typography variant="h6" className={classes.title}>
                     {props.content}
@@ -182,11 +171,17 @@ const MainNavbar = (props) => {
                         <NavLink to="/">
                             <Avatar edge="start" variant="square" alt="Logo" src={IconImage} className={classes.logoNav}/>
                         </NavLink>
-                        {links.map((item,index) => {
-                            return(
-                                <CustomLink key={item.text} content={item.text} to={item.to}/>
-                            )
-                        })}
+                        <Box display={{ xs: 'none', sm: 'none', md: 'block' }} style={{width:'100%'}}>
+                            <ul className={clsx('PrimaryNav',(elevationTrigger ? 'with-indicator-scrolled' : 'with-indicator'))}>
+                                {links.map((item,index) => {
+                                    return(
+                                        <li className={clsx(classes.navLink,"Nav-item",(elevationTrigger ? classes.withBackground : ''),(item.to == indicator ? 'is-active' : ''))}>
+                                            <CustomLink key={item.text} content={item.text} to={item.to}/>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </Box>
                         <Typography variant="h6" className={classes.title}/>
                         <Box display={{ xs: 'block', sm: 'block', md: 'none' }} >
                             <IconButton onClick={toggleDrawer("top", true)} className={classes.menuButton} color="inherit" aria-label="menu">

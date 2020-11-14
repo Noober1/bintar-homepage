@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
 		margin:theme.spacing(3,0,3,0)
 	},
 	subFooter:{
-		background:'red',
 		padding:theme.spacing(1,3,1,3)
 	},
 	textBold:{
@@ -50,10 +49,10 @@ const MainFooter = () => {
                 <Link color="inherit" className={clsx(classes.textBold, classes.textUppercase)} href="/About">About</Link>
             </Typography>
             <Typography align={align}>
-                <IconButton href="/test">
+                <IconButton href="fb.me/binatarunasubang">
                     <Facebook fontSize="large"/>
                 </IconButton>
-                <IconButton href="/test">
+                <IconButton href="#">
                     <Twitter fontSize="large"/>
                 </IconButton>
                 <IconButton href="mailto:info@smkbintarjalacagak.sch.id">
@@ -103,11 +102,11 @@ const MainFooter = () => {
                     </Grid>
                 </Grid>
             </Container>
-            <Grid container className={classes.subFooter}>
-                <Grid item xs={12}>
-                    xxxx
-                </Grid>	
-            </Grid>
+            <Container fixed className={classes.subFooter}>
+                <Typography align="center">
+                    &copy;{new Date().getFullYear()} - SMK Bina Taruna Jalancagak - This page was designed by <Link href="http://fb.me/ruhiyatna.cucu" color="inherit">Cucu Ruhiyatna</Link>
+                </Typography>
+            </Container>
         </footer>
     )
 }

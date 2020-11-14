@@ -4,10 +4,9 @@ import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/sty
 import { AppContainer, MainFooter, MainNavbar } from './components/nano'
 import { useGlobal } from 'reactn'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { Main, About, Posts, ErrorPage } from './components/pages'
 
-import Main from './components/pages/main';
-import About from './components/pages/about';
-import Posts from './components/pages/posts';
+
 
 const darkTheme = {
 	overrides: {
@@ -78,22 +77,16 @@ const App = () => {
 			<div id="main-content" className={classes.root}>
 				<BrowserRouter>
 					<MainNavbar/>
-					<Switch>
-						<AppContainer>
-							<Route path="/" exact={true}>
-								<Main />	
-							</Route>
-							<Route path="/posts">
-								<Posts />
-							</Route>
-							<Route path="/about">
-								<About />
-							</Route>
+					<AppContainer>
+						<Switch>
+							<Route path="/" exact={true} component={Main}/>
+							<Route path="/posts" component={Posts}/>
+							<Route path="/about" component={About}/>
 							<Route>
-								
+								<ErrorPage type="404"/>
 							</Route>
-						</AppContainer>
-					</Switch>
+						</Switch>
+					</AppContainer>
 				</BrowserRouter>
 			</div>
 			<MainFooter/>

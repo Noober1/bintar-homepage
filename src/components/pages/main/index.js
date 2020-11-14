@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	mt4:{
 		marginTop:theme.spacing(4)
+	},
+	VisbyBold:{
+		fontFamily:'VisbyBold'
 	}
 }));
 
@@ -80,10 +83,10 @@ const Main = () => {
 					</Box>
 				</Grid>
 				<Grid item xs={12}  md={8} lg={8}>
-					<Typography variant="h4">
+					<Typography variant="h4" className={classes.VisbyBold}>
 						Sambutan Kepala Sekolah
 					</Typography>
-					<Divider style={{marginBottom:10,marginTop:10}}/>
+					<Divider style={{marginBottom:30,marginTop:10}}/>
 					<Typography style={{fontFamily:'InterNormal'}}>
 						Assalamualaikum Wr.Wb<br/>
 						Selamat datang di Website kami Sekolah Menengah Kejuruan Negeri 13 Bandung. Media ini saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta masyarakat guna dapat mengakses seluruh informasi tentang segala profil, kegiatan serta fasilitas sekolah kami.Saya selaku pimpinan mengucapkan terima kasih kepada Tim Manajemen dan Tim IT yang telah berusaha untuk dapat lebih memperkenalkan segala perihal yang dimiliki oleh sekolah. Saya berharap Website ini dapat dijadikan sarana interaksi yang positif baik antar warga sekolah maupun masyarakat pada umumnya sehingga informasi dapat tersampaikan dengan baik. Semoga Allah SWT memberikan kekuatan bagi kita semua untuk mencerdaskan anak-anak bangsa.Wassalamualikum Wr.Wb<br/><br/>
@@ -164,6 +167,14 @@ const Main = () => {
 		)
 	}
 
+	const StudyList = () => {
+		return(
+			<Grid container className={classes.boxIntro}>
+				ss
+			</Grid>
+		)
+	}
+
 	const Affiliation = () => {
 		return(
 			<Grid container className={classes.boxAffiliation}>
@@ -222,6 +233,9 @@ const Main = () => {
 			<Grid container className={classes.backgroundTheme}>
 				<Container maxWidth="lg">	
 					<Why />
+				</Container>
+				<Container maxWidth="lg">	
+					<StudyList />
 				</Container>
 			</Grid>
 			<Affiliation />

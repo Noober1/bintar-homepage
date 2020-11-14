@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
+import { useGlobal } from 'reactn';
 import backgroundHeader from '../../assets/images/backgroundHeader.jpg'
 
 const AppContainer = (props) => {
 
 	const history = useHistory();
+	const [ indicator, setIndicator ] = useGlobal('navBarIndicator');
 
 	useEffect(() => {
+
+		setIndicator(history.location.pathname)
 
 		const rootDOM = document.querySelector('#body');
 
@@ -28,6 +32,7 @@ const AppContainer = (props) => {
 		trigger()
 
 		history.listen((location, action) => {
+			setIndicator(history.location.pathname)
 			trigger()
 		})
 		

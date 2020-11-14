@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import './assets/css/animate.min.css'
 import App from './App';
 import { setGlobal } from 'reactn';
@@ -11,6 +11,7 @@ const getDarkModeState = () => {
 }
 
 setGlobal({
+    navBarIndicator:'/',
     darkMode:getDarkModeState()
 });
 
