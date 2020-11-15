@@ -13,20 +13,20 @@ const styles = {
         height: 48,
         padding: '0 30px',
         transition:'all .3s ease-in-out',
-        boxShadow: '0 3px 5px 2px rgb(114 105 255 / 30%)',
+        boxShadow: '0 0 5px 2px rgb(114 105 255 / 30%)',
         '&:hover':{
-            borderRadius: 3,
+            boxShadow: '0 0px 25px 25px rgb(114 105 255 / 30%)'
         }
     },
 };
 
 function CustomButton(props) {
-    const { classes, children, className, ...other } = props;
+    const { classes, children, className, lefticon,  ...other } = props;
 
     return (
         <Button className={clsx(classes.root, className)} {...other}>
         {children || 'class names'}&nbsp;
-        {props.lefticon}
+        {lefticon}
         </Button>
     );
 }
@@ -35,6 +35,7 @@ CustomButton.propTypes = {
     children: PropTypes.node,
     classes: PropTypes.object.isRequired,
     className: PropTypes.string,
+    lefticon: PropTypes.node,
 };
 
 export default withStyles(styles)(CustomButton);

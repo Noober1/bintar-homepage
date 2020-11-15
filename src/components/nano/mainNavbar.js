@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Toolbar, IconButton, Typography, Tooltip, AppBar, Zoom, Avatar, Link, Container, Box, List, ListItem, Divider, ListItemIcon, ListItemText, Drawer, Button, useScrollTrigger, Slide,  } from '@material-ui/core'
@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
     topNavLink:{
         marginRight:theme.spacing(2)
     }
-
 }));
 
 const HideOnScroll = (props) =>{
@@ -59,9 +58,11 @@ const MainNavbar = (props) => {
 
     const { window } = props;
 
+    const [subHeaderState, setsubHeaderState] = useState(0)
+
     const elevationTrigger = useScrollTrigger({
         disableHysteresis: true,
-        threshold: 20,
+        threshold: subHeaderState,
         target: window ? window() : undefined,
     });
 
@@ -93,7 +94,7 @@ const MainNavbar = (props) => {
     const [ darkMode, setDarkMode ] = useGlobal('darkMode');
     const [ indicator, setIndicator ] = useGlobal('navBarIndicator');
 
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
         left: false,
         bottom: false,
@@ -145,6 +146,13 @@ const MainNavbar = (props) => {
         )
     }
 
+    useEffect(() => {
+        let getSubHeader = document.querySelector('#subNavbar');
+        if (getSubHeader) {
+            setsubHeaderState(getSubHeader.clientHeight)
+        }
+    }, [])
+
     return (
         <>
         <Drawer anchor="top" open={state["top"]} onClose={toggleDrawer("top", false)}>
@@ -164,7 +172,7 @@ const MainNavbar = (props) => {
         </Box>
         <HideOnScroll {...props}>
             <AppBar id="mainNavbar" position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'default' : 'transparent'} className={classes.root} style={{
-                padding: elevationTrigger ? '0rem' : '1.5rem 0rem 1.5rem 0rem',
+                padding: elevationTrigger ? '0rem' : '0rem 0rem 1.5rem 0rem',
             }}>
                 <Container maxWidth="lg">
                     <Toolbar>
@@ -172,7 +180,7 @@ const MainNavbar = (props) => {
                             <Avatar edge="start" variant="square" alt="Logo" src={IconImage} className={classes.logoNav}/>
                         </NavLink>
                         <Box display={{ xs: 'none', sm: 'none', md: 'block' }} className={classes.boxNav}>
-                            <ul className={clsx('PrimaryNav',(elevationTrigger ? 'with-indicator-scrolled' : 'with-indicator'))}>
+                            <ul className={clsx('PrimaryNav',(elevationTrigger ? 'with-indicator-scrolled' : 'with-indicator'), classes.primaryNav)}>
                                 {links.map((item,index) => {
                                     return(
                                         <li key={item.to} className={clsx(classes.navLink,"Nav-item",(elevationTrigger ? classes.withBackground : ''),(item.to == indicator ? 'is-active' : ''))}>
@@ -188,7 +196,7 @@ const MainNavbar = (props) => {
                                 <MenuIcon />
                             </IconButton>
                         </Box>
-                        <Tooltip arrow="true" TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
+                        <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
                             <IconButton color="inherit" onClick={handleToogleDarkMode}>
                                 {darkMode ? <Brightness7/> : <Brightness4/>}
                             </IconButton>

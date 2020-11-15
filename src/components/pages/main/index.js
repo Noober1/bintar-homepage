@@ -7,6 +7,7 @@ import aboutBackground from '../../../assets/images/tefa.jpg'
 import { CustomButton } from '../../styling';
 import { ArrowForward } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
+import WOW from 'wowjs';
 
 import backgroundHeader from '../../../assets/images/backgroundHeader.jpg'
 
@@ -17,8 +18,13 @@ const useStyles = makeStyles((theme) => ({
 	aboutBG:{
 		backgroundImage:`url(${aboutBackground})`,
 		backgroundRepeat:'no-repeat',
+		backgroundAttachment:'fixed',
 		backgroundPosition:'center',
-		backgroundSize:'cover'
+		backgroundSize:'cover',
+		minHeight:'500px',
+		height:'100vh',
+		maxHeight:'700px',
+		alignItems:'center'
 	},
 	titleText:{
 		flexGrow: 1,
@@ -28,9 +34,10 @@ const useStyles = makeStyles((theme) => ({
 	mainHeader:{
 		background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
 	},
-	boxIntro:{
+	boxContent:{
 		margin: theme.spacing(15, 0, 15, 0)
 	},
+	
 	boxAffiliation:{
 		padding: theme.spacing(15, 0, 15, 0),
 		backgroundColor:'white',
@@ -39,6 +46,17 @@ const useStyles = makeStyles((theme) => ({
 	},
 	boxMaps:{
 		padding: theme.spacing(15, 0, 15, 0),
+	},
+	boxIntroImg:{
+		backgroundImage:`url(${HeadMaster})`,
+		backgroundPosition:'top right',
+		backgroundSize:'cover',
+		backgroundRepeat:'no-repeat',
+		height:'100%',
+		opacity:.9
+	},
+	boxIntroDialog:{
+		padding:theme.spacing(5)
 	},
 	fullWidthContainer: {
 		maxWidth: '100vw',
@@ -70,29 +88,38 @@ const Main = () => {
 			style.backgroundRepeat = 'no-repeat'
 			style.backgroundSize = 'cover'
 		}
+
+		return new WOW.WOW({
+			animateClass:'animate__animated',
+			live: false
+		}).init();
+
 	}, [])
 
 	const classes = useStyles();
 
 	const Intro = () => {
 		return(
-			<Grid container className={classes.boxIntro} spacing={2}>
+			<Grid container className="wow animate__fadeIn" data-wow-offset="350">
 				<Grid item xs={12} md={4} lg={4}>
-					<Box display={{ xs: 'none', sm: 'none', md: 'block' }}>
-						<img alt="Kepala Sekolah" title="Kepala Sekolah" width="100%" src={HeadMaster} />
+					<Box display={{ xs: 'none', sm: 'none', md: 'block' }} className={classes.boxIntroImg}>
+						
 					</Box>
 				</Grid>
-				<Grid item xs={12}  md={8} lg={8}>
-					<Typography variant="h4" className={classes.VisbyBold}>
+				<Grid item xs={12}  md={8} lg={8} className={classes.boxIntroDialog}>
+					<Typography align="center" variant="h4" className={classes.VisbyBold}>
 						Sambutan Kepala Sekolah
 					</Typography>
 					<Divider style={{marginBottom:30,marginTop:10}}/>
-					<Typography style={{fontFamily:'InterNormal'}}>
+					<Typography align="center" style={{fontFamily:'InterNormal'}}>
 						Assalamualaikum Wr.Wb<br/>
 						Selamat datang di Website kami Sekolah Menengah Kejuruan Negeri 13 Bandung. Media ini saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta masyarakat guna dapat mengakses seluruh informasi tentang segala profil, kegiatan serta fasilitas sekolah kami.Saya selaku pimpinan mengucapkan terima kasih kepada Tim Manajemen dan Tim IT yang telah berusaha untuk dapat lebih memperkenalkan segala perihal yang dimiliki oleh sekolah. Saya berharap Website ini dapat dijadikan sarana interaksi yang positif baik antar warga sekolah maupun masyarakat pada umumnya sehingga informasi dapat tersampaikan dengan baik. Semoga Allah SWT memberikan kekuatan bagi kita semua untuk mencerdaskan anak-anak bangsa.Wassalamualikum Wr.Wb<br/><br/>
 					</Typography>
-					<Typography style={{fontWeight:'bold'}}>
+					<Typography align="center" variant="subtitle1" style={{fontWeight:'bold'}}>
 						Kepala Sekolah
+					</Typography>
+					<Typography align="center" variant="subtitle1">
+						Dra. Hj. Neneng Tresnawangsih, MM.
 					</Typography>
 				</Grid>
 			</Grid>
@@ -101,7 +128,7 @@ const Main = () => {
 
 	const About = () => {
 		return(
-			<Grid container className={classes.boxIntro}>
+			<Grid container className="wow animate__fadeInUp" data-wow-offset="250">
 				<Grid item xs={12}>
 					<Container maxWidth="lg" style={{color:'white'}}>
 						<Typography variant="h4" align="center" style={{marginBottom:10}}>
@@ -121,7 +148,7 @@ const Main = () => {
 
 	const Why = () => {
 		return(
-			<Grid container className={classes.boxIntro}>
+			<Grid container className={clsx(classes.boxContent, "wow animate__bounceInLeft")} data-wow-offset="200">
 				<Grid item xs={12}>
 					<Typography variant="h4" align="center" style={{marginBottom:10}}>
 						Kenapa harus sekolah di SMK Bina Taruna Jalancagak?
@@ -169,7 +196,7 @@ const Main = () => {
 
 	const StudyList = () => {
 		return(
-			<Grid container className={classes.boxIntro}>
+			<Grid container className={classes.boxContent}>
 				ss
 			</Grid>
 		)
@@ -211,8 +238,8 @@ const Main = () => {
 	}
 
 	return (
-		<div className="animate__animated animate__fadeIn">
-			<Grid container id="mainHeader" className={classes.mainHeader}>
+		<>
+			<Grid container id="mainHeader" className={clsx(classes.mainHeader, "wow animate__fadeIn")}>
 				<Grid container>
 					<Grid item xs={12} className={classes.title}>
 						<Typography variant="h1" align="center" className={classes.titleText}>
@@ -223,7 +250,7 @@ const Main = () => {
 						</Typography>
 					</Grid>
 				</Grid>
-				<Container maxWidth="lg">	
+				<Container style={{padding:'0px'}}>	
 					<Intro />
 				</Container>
 			</Grid>
@@ -240,7 +267,7 @@ const Main = () => {
 			</Grid>
 			<Affiliation />
 			<Maps />
-		</div>
+		</>
 	)
 }
 

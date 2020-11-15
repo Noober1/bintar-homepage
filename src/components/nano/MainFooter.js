@@ -141,8 +141,8 @@ const MainFooter = (props) => {
                 </Typography>
             </Container>
             <ScrollTop {...props}>
-                <Tooltip arrow="true" TransitionComponent={Zoom} placement="left" title="Kembali ke atas" aria-label="Mode Gelap">
-                    <Fab color="primary" size="large" aria-label="scroll back to top">
+                <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title="Kembali ke atas" aria-label="Mode Gelap">
+                    <Fab color="primary" size="large" aria-label="Klik untuk kembali ke atas">
                         <KeyboardArrowUp style={{fontSize:40}}/>
                     </Fab>
                 </Tooltip>

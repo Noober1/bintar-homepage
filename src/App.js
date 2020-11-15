@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from 'react'
 import { CssBaseline } from '@material-ui/core'
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import { AppContainer, MainFooter, MainNavbar, Fallback } from './components/nano'
+import { AppContainer, MainFooter, MainNavbar, Fallback, ErrorBoundary } from './components/nano'
 import { useGlobal } from 'reactn'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
@@ -83,16 +83,18 @@ const App = () => {
 				<BrowserRouter>
 					<MainNavbar/>
 					<AppContainer>
-						<Suspense fallback={<Fallback />}>
-							<Switch>
-								<Route path="/" exact={true} component={Main}/>
-								<Route path="/posts" component={Posts}/>
-								<Route path="/about" component={About}/>
-								<Route>
-									<ErrorPage type="404"/>
-								</Route>
-							</Switch>
-						</Suspense>
+						<ErrorBoundary>
+							<Suspense fallback={<Fallback />}>
+								<Switch>
+									<Route path="/" exact={true} component={Main}/>
+									<Route path="/posts" component={Posts}/>
+									<Route path="/about" component={About}/>
+									<Route>
+										<ErrorPage type="404"/>
+									</Route>
+								</Switch>
+							</Suspense>
+						</ErrorBoundary>
 					</AppContainer>
 				</BrowserRouter>
 			</div>

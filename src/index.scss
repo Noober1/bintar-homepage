@@ -69,14 +69,10 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 	width: $width; //dynamic width
 	text-align: center;
 
-	&.is-active a {
-		color: '$indicator-color';
-	}
-
 	a {
 		display: block;
-		padding-top: 20px;
-		padding-bottom: 20px;
+		padding-top: 16px;
+		padding-bottom: 16px;
 		text-decoration: none;
 	}
 }
@@ -93,6 +89,7 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 	.Nav-item {
 		&:last-child {
 			&:before, &:after {
+				border-radius:0px 0px 5px 5px;
 				content: '';
 				display: block;
 				position: absolute;
@@ -165,7 +162,6 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 				margin-left: -3px;
 			}
 			&:after {
-				border-radius:0px 0px 5px 5px;
 				background: $indicator-color;
 				top: 0px;
 				height:5px;
@@ -183,17 +179,26 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 
 	.Nav-item {
 
+		padding-top: 20px!important;
+
 		&:last-child {
+			&:before {
+				border: 6px solid transparent;
+				border-top-color: $indicator-color;
+				width: 0;
+				height: 0;
+				top: 5px;
+				left: ($width/2);
+				margin-left: -3px;
+			}
 			&:after {
 				background: $indicator-color;
-				bottom:-4px;
-				height:4px;
-				left: 0;
+				top:0;
+				height:5px;
 				width: $width;
 				z-index: -1;
 			}
 		}
-
 	}
 
 }
