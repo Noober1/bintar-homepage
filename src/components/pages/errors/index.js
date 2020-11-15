@@ -2,7 +2,7 @@ import { Container, Link, makeStyles, Typography } from '@material-ui/core'
 import { Link as RouterLink } from 'react-router-dom'
 import Error404 from '../../../assets/icons/045-404 error.png'
 import ErrorOther from '../../../assets/icons/044-error.png'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 var useStyles = makeStyles((theme) => ({
     root:{
@@ -23,6 +23,13 @@ var useStyles = makeStyles((theme) => ({
 const ErrorPage = ({ type }) => {
     const classes = useStyles()
     var ErrorImage = type === '404' ? Error404 : ErrorOther;
+
+    useEffect(() => {
+        document.title = 'Halaman tidak ditemukan'
+
+        const anchor = document.querySelector('#subNavbar');
+        anchor.scrollIntoView({block: 'center' })
+    }, [])
 
     const CustomLink = ({to,children}) => {
         return(

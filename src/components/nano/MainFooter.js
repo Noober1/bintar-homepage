@@ -1,11 +1,18 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton } from '@material-ui/core'
-import { Facebook, Twitter, Mail, Room, Phone, AlternateEmail } from '@material-ui/icons'
+import propTypes from 'prop-types'
+import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Zoom, Fab, Tooltip } from '@material-ui/core'
+import { Facebook, Twitter, Mail, Room, Phone, AlternateEmail, KeyboardArrowUp } from '@material-ui/icons'
+
 
 import SMKBisa from '../../assets/images/smkbisa.png'
 
 const useStyles = makeStyles((theme) => ({
+    backToTop:{
+        position:'fixed',
+        bottom:theme.spacing(3),
+        right:theme.spacing(3)
+    },
     root:{
         backgroundColor:theme.palette.background.default
     },
@@ -35,7 +42,33 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-const MainFooter = () => {
+const ScrollTop = (props) => {
+    const { children, window } = props;
+    const classes = useStyles();
+    const trigger = useScrollTrigger({
+      target: window ? window() : undefined,
+      disableHysteresis: true,
+      threshold: 100,
+    });
+  
+    const handleClick = (event) => {
+      const anchor = (event.target.ownerDocument || document).querySelector('#subNavbar');
+  
+        if (anchor) {
+            anchor.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+  
+    return (
+      <Zoom in={trigger}>
+        <div onClick={handleClick} role="presentation" className={classes.backToTop}>
+          {children}
+        </div>
+      </Zoom>
+    );
+}
+
+const MainFooter = (props) => {
 
     const classes = useStyles()
 
@@ -49,7 +82,7 @@ const MainFooter = () => {
                 <Link color="inherit" className={clsx(classes.textBold, classes.textUppercase)} href="/About">About</Link>
             </Typography>
             <Typography align={align}>
-                <IconButton href="fb.me/binatarunasubang">
+                <IconButton href="http://fb.me/binatarunasubang">
                     <Facebook fontSize="large"/>
                 </IconButton>
                 <IconButton href="#">
@@ -107,6 +140,13 @@ const MainFooter = () => {
                     &copy;{new Date().getFullYear()} - SMK Bina Taruna Jalancagak - This page was designed by <Link href="http://fb.me/ruhiyatna.cucu" color="inherit">Cucu Ruhiyatna</Link>
                 </Typography>
             </Container>
+            <ScrollTop {...props}>
+                <Tooltip arrow="true" TransitionComponent={Zoom} placement="left" title="Kembali ke atas" aria-label="Mode Gelap">
+                    <Fab color="primary" size="large" aria-label="scroll back to top">
+                        <KeyboardArrowUp style={{fontSize:40}}/>
+                    </Fab>
+                </Tooltip>
+            </ScrollTop>
         </footer>
     )
 }

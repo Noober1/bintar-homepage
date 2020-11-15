@@ -18,8 +18,8 @@ const useStyles = makeStyles((theme) => ({
 	title: {
 	  	flexGrow: 1,
     },
-    withBackground:{
-        // backgroundColor:theme.palette.primary.main
+    boxNav:{
+        width:`calc(100% - ${theme.spacing(5)}px)`
     },
     menuButton: {
         marginRight: theme.spacing(2),
@@ -122,7 +122,7 @@ const MainNavbar = (props) => {
         >
             <List>
             {links.map((item, index) => (
-                <Link color="inherit" component={RouterLink} to={item.to} className={classes.customLink}>
+                <Link color="inherit" key={item.to} component={RouterLink} to={item.to} className={classes.customLink}>
                     <ListItem button key={item.to}>
                     <ListItemIcon><Star /></ListItemIcon>
                         <ListItemText>{item.text}</ListItemText>
@@ -151,7 +151,7 @@ const MainNavbar = (props) => {
             {MenuDrawer("top")}
         </Drawer>
         <Box display={{ xs: 'none', sm: 'none', md: 'block' }} >
-            <AppBar position="static" className={classes.roox} color="primary">
+            <AppBar position="static" className={classes.roox} color="primary" id="subNavbar">
                 <Toolbar variant="dense">
                     <Link className={classes.topNavLink} color="inherit" href="http://sas.smkbintarjalancagak.sch.id/">
                         SAS
@@ -171,11 +171,11 @@ const MainNavbar = (props) => {
                         <NavLink to="/">
                             <Avatar edge="start" variant="square" alt="Logo" src={IconImage} className={classes.logoNav}/>
                         </NavLink>
-                        <Box display={{ xs: 'none', sm: 'none', md: 'block' }} style={{width:'100%'}}>
+                        <Box display={{ xs: 'none', sm: 'none', md: 'block' }} className={classes.boxNav}>
                             <ul className={clsx('PrimaryNav',(elevationTrigger ? 'with-indicator-scrolled' : 'with-indicator'))}>
                                 {links.map((item,index) => {
                                     return(
-                                        <li className={clsx(classes.navLink,"Nav-item",(elevationTrigger ? classes.withBackground : ''),(item.to == indicator ? 'is-active' : ''))}>
+                                        <li key={item.to} className={clsx(classes.navLink,"Nav-item",(elevationTrigger ? classes.withBackground : ''),(item.to == indicator ? 'is-active' : ''))}>
                                             <CustomLink key={item.text} content={item.text} to={item.to}/>
                                         </li>
                                     )
@@ -188,7 +188,7 @@ const MainNavbar = (props) => {
                                 <MenuIcon />
                             </IconButton>
                         </Box>
-                        <Tooltip TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
+                        <Tooltip arrow="true" TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
                             <IconButton color="inherit" onClick={handleToogleDarkMode}>
                                 {darkMode ? <Brightness7/> : <Brightness4/>}
                             </IconButton>
