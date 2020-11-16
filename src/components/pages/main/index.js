@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
-import { Grid, Typography, Container, Divider, Card, CardContent, Box } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Grid, Typography, Container, Divider, Card, CardContent, Box, useMediaQuery } from '@material-ui/core'
+import { useTheme, makeStyles } from '@material-ui/core/styles'
 import HeadMaster from '../../../assets/images/kepalasekolah.png'
 import aboutBackground from '../../../assets/images/tefa.jpg'
 import { CustomButton } from '../../styling';
@@ -10,84 +10,105 @@ import { Link } from 'react-router-dom';
 import WOW from 'wowjs';
 
 import backgroundHeader from '../../../assets/images/backgroundHeader.jpg'
+import hex2Rgba from '../../nano/hex2rgba'
+import { useGlobal } from 'reactn'
 
-const useStyles = makeStyles((theme) => ({
-	title: {
-		margin: theme.spacing(15, 'auto')
-	},
-	aboutBG:{
-		backgroundImage:`url(${aboutBackground})`,
-		backgroundRepeat:'no-repeat',
-		backgroundAttachment:'fixed',
-		backgroundPosition:'center',
-		backgroundSize:'cover',
-		minHeight:'500px',
-		height:'100vh',
-		maxHeight:'700px',
-		alignItems:'center'
-	},
-	titleText:{
-		flexGrow: 1,
-		fontFamily: 'Inter',
-		fontWeight: 'Bold'
-	},
-	mainHeader:{
-		background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
-	},
-	boxContent:{
-		margin: theme.spacing(15, 0, 15, 0)
-	},
-	
-	boxAffiliation:{
-		padding: theme.spacing(15, 0, 15, 0),
-		backgroundColor:'white',
-		color:'black',
-		boxShadow: '0px 0px 35px 1px rgba(122,122,122,0.46)'
-	},
-	boxMaps:{
-		padding: theme.spacing(15, 0, 15, 0),
-	},
-	boxIntroImg:{
-		backgroundImage:`url(${HeadMaster})`,
-		backgroundPosition:'top right',
-		backgroundSize:'cover',
-		backgroundRepeat:'no-repeat',
-		height:'100%',
-		opacity:.9
-	},
-	boxIntroDialog:{
-		padding:theme.spacing(5)
-	},
-	fullWidthContainer: {
-		maxWidth: '100vw',
-	},
-	backgroundTheme: {
-		backgroundColor:theme.palette.background.default
-	},
-	aboutReadMore: {
-		marginTop: theme.spacing(4)
-	},
-	mt4:{
-		marginTop:theme.spacing(4)
-	},
-	VisbyBold:{
-		fontFamily:'VisbyBold'
-	}
-}));
+const useStyles = makeStyles((theme) => {
+	var bg = theme.palette.background.default
+
+	return ({
+		title: {
+			margin: theme.spacing(15, 'auto')
+		},
+		aboutBG:{
+			backgroundImage:`linear-gradient(${hex2Rgba(bg,.7)} 0%, ${hex2Rgba(bg,.7)} 100%),url(${aboutBackground})`,
+			backgroundRepeat:'no-repeat',
+			backgroundAttachment:'fixed',
+			backgroundPosition:'center',
+			backgroundSize:'cover',
+			minHeight:'500px',
+			height:'100vh',
+			maxHeight:'700px',
+			alignItems:'center'
+		},
+		titleText:{
+			flexGrow: 1,
+			fontFamily: 'Inter',
+			fontWeight: 'Bold'
+		},
+		mainHeader:{
+			background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
+		},
+		boxContent:{
+			margin: theme.spacing(15, 0, 15, 0)
+		},
+		
+		boxAffiliation:{
+			padding: theme.spacing(15, 0, 15, 0),
+			backgroundColor:'white',
+			color:'black',
+			boxShadow: '0px 0px 35px 1px rgba(122,122,122,0.46)'
+		},
+		boxMaps:{
+			padding: theme.spacing(15, 0, 15, 0),
+		},
+		boxIntro:{
+			backgroundPosition:'bottom left',
+			backgroundSize:'contain',
+			backgroundRepeat:'no-repeat',
+			height:'100%',
+			opacity:.9
+		},
+		boxIntroImg:{
+			backgroundImage:`url(${HeadMaster})`,
+		},
+		boxIntroNoImg:{
+			backgroundImage:'none'
+		},
+		boxIntroDialog:{
+			padding:theme.spacing(5)
+		},
+		fullWidthContainer: {
+			maxWidth: '100vw',
+		},
+		backgroundTheme: {
+			backgroundColor:theme.palette.background.default
+		},
+		aboutReadMore: {
+			fontFamily:'Inter',
+			marginTop: theme.spacing(4)
+		},
+		mt4:{
+			marginTop:theme.spacing(4)
+		},
+		VisbyBold:{
+			fontFamily:'VisbyBold'
+		}
+	})
+});
 
 const Main = () => {
 
+	const hideAboutBoxImg = useMediaQuery('(min-width:960px)');
+	const theme = useTheme();
+	const [darkMode, setDarkMode] = useGlobal('darkMode')
+
 	useEffect(() => {
-		document.title = 'Beranda';
 		const mainContentDOM = document.querySelector('#body');
+		console.log('triggered')
 		
 		if (mainContentDOM !== null) {
 			let { style } = mainContentDOM;
-			style.backgroundImage = `url(${backgroundHeader})`
-			style.backgroundPosition = 'center center'
+			style.backgroundImage = `linear-gradient(180deg, ${theme.palette.background.default} 0%, rgba(209,209,209,0) 100%),url(${backgroundHeader})`
+			style.backgroundPosition = 'top center'
+			style.backgroundAttachment = 'fixed'
 			style.backgroundRepeat = 'no-repeat'
 			style.backgroundSize = 'cover'
 		}
+	}, [darkMode])
+
+	useEffect(() => {
+		document.title = 'Beranda';
 
 		return new WOW.WOW({
 			animateClass:'animate__animated',
@@ -100,26 +121,26 @@ const Main = () => {
 
 	const Intro = () => {
 		return(
-			<Grid container className="wow animate__fadeIn" data-wow-offset="350">
-				<Grid item xs={12} md={4} lg={4}>
-					<Box display={{ xs: 'none', sm: 'none', md: 'block' }} className={classes.boxIntroImg}>
+			<Grid container className={clsx("wow animate__fadeIn",classes.boxIntro, (hideAboutBoxImg ? classes.boxIntroImg : ''))} data-wow-offset="550">
+				<Grid item xs={12} md={5} lg={4}>
+					<Box display={{ xs: 'none', sm: 'none', md: 'block' }}>
 						
 					</Box>
 				</Grid>
-				<Grid item xs={12}  md={8} lg={8} className={classes.boxIntroDialog}>
+				<Grid item xs={12}  md={7} lg={8} className={classes.boxIntroDialog}>
 					<Typography align="center" variant="h4" className={classes.VisbyBold}>
 						Sambutan Kepala Sekolah
 					</Typography>
 					<Divider style={{marginBottom:30,marginTop:10}}/>
-					<Typography align="center" style={{fontFamily:'InterNormal'}}>
+					<Typography align="center" style={{fontFamily:'Visby'}}>
 						Assalamualaikum Wr.Wb<br/>
-						Selamat datang di Website kami Sekolah Menengah Kejuruan Negeri 13 Bandung. Media ini saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta masyarakat guna dapat mengakses seluruh informasi tentang segala profil, kegiatan serta fasilitas sekolah kami.Saya selaku pimpinan mengucapkan terima kasih kepada Tim Manajemen dan Tim IT yang telah berusaha untuk dapat lebih memperkenalkan segala perihal yang dimiliki oleh sekolah. Saya berharap Website ini dapat dijadikan sarana interaksi yang positif baik antar warga sekolah maupun masyarakat pada umumnya sehingga informasi dapat tersampaikan dengan baik. Semoga Allah SWT memberikan kekuatan bagi kita semua untuk mencerdaskan anak-anak bangsa.Wassalamualikum Wr.Wb<br/><br/>
+						Selamat datang di Sekolah Menengah Kejuruan(SMK) Bina Taruna Jalancagak. Media ini saya tujukan untuk seluruh unsur pimpinan, guru, karyawan dan siswa serta masyarakat guna dapat mengakses seluruh informasi tentang segala profil, kegiatan serta fasilitas sekolah kami.<br/>Saya selaku pimpinan mengucapkan terima kasih kepada Tim Manajemen dan Tim IT yang telah berusaha untuk dapat lebih memperkenalkan segala perihal yang dimiliki oleh sekolah.<br/>Saya berharap situs ini dapat dijadikan sarana interaksi yang positif baik antar warga sekolah maupun masyarakat pada umumnya sehingga informasi dapat tersampaikan dengan baik.<br/>Semoga Allah SWT memberikan kekuatan bagi kita semua untuk mencerdaskan anak-anak bangsa.<br/>Wassalamualikum Wr.Wb<br/><br/>
 					</Typography>
 					<Typography align="center" variant="subtitle1" style={{fontWeight:'bold'}}>
 						Kepala Sekolah
 					</Typography>
 					<Typography align="center" variant="subtitle1">
-						Dra. Hj. Neneng Tresnawangsih, MM.
+						Dedi Rohimat, ST.
 					</Typography>
 				</Grid>
 			</Grid>
@@ -130,7 +151,7 @@ const Main = () => {
 		return(
 			<Grid container className="wow animate__fadeInUp" data-wow-offset="250">
 				<Grid item xs={12}>
-					<Container maxWidth="lg" style={{color:'white'}}>
+					<Container maxWidth="lg">
 						<Typography variant="h4" align="center" style={{marginBottom:10}}>
 							Tentang Sekolah
 						</Typography>

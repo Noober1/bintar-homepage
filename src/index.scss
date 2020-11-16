@@ -179,6 +179,13 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 
 	.Nav-item {
 
+		a {
+			display: block;
+			text-decoration: none;
+			padding-top:0;
+			padding-bottom:20px;
+		}
+
 		padding-top: 20px!important;
 
 		&:last-child {
@@ -187,14 +194,14 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 				border-top-color: $indicator-color;
 				width: 0;
 				height: 0;
-				top: 5px;
+				top: 3px;
 				left: ($width/2);
 				margin-left: -3px;
 			}
 			&:after {
 				background: $indicator-color;
 				top:0;
-				height:5px;
+				height:3px;
 				width: $width;
 				z-index: -1;
 			}

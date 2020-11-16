@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
         boxShadow:'none',
         transition: 'all .3s ease-in-out!important'
     },
+    subNavbar:{
+        borderBottom:'3px solid #5587fe'
+    },
 	title: {
 	  	flexGrow: 1,
     },
@@ -159,7 +162,7 @@ const MainNavbar = (props) => {
             {MenuDrawer("top")}
         </Drawer>
         <Box display={{ xs: 'none', sm: 'none', md: 'block' }} >
-            <AppBar position="static" className={classes.roox} color="primary" id="subNavbar">
+            <AppBar position="static" className={classes.subNavbar} color="primary" id="subNavbar">
                 <Toolbar variant="dense">
                     <Link className={classes.topNavLink} color="inherit" href="http://sas.smkbintarjalancagak.sch.id/">
                         SAS
