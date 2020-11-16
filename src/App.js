@@ -5,13 +5,7 @@ import { AppContainer, MainFooter, MainNavbar, Fallback, ErrorBoundary } from '.
 import { useGlobal } from 'reactn'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-
-const Main = lazy(() => import('./components/pages/main'));
-const About = lazy(() => import('./components/pages/about'));
-const Posts = lazy(() => import('./components/pages/posts'));
-const ErrorPage = lazy(() => import('./components/pages/errors'));
-
-
+import { Main, About, Posts, ErrorPage } from './components/pages'
 
 const darkTheme = {
 	overrides: {

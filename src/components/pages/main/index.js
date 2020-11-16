@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
 import { Grid, Typography, Container, Divider, Card, CardContent, Box, useMediaQuery } from '@material-ui/core'
-import { useTheme, makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import HeadMaster from '../../../assets/images/kepalasekolah.png'
 import aboutBackground from '../../../assets/images/tefa.jpg'
 import { CustomButton } from '../../styling';
@@ -32,9 +32,20 @@ const useStyles = makeStyles((theme) => {
 			alignItems:'center'
 		},
 		titleText:{
-			flexGrow: 1,
 			fontFamily: 'Inter',
-			fontWeight: 'Bold'
+			fontWeight: 'Bold',
+			[theme.breakpoints.up('xs')]: {
+				fontSize: '3rem',
+			},
+			[theme.breakpoints.up('sm')]: {
+				fontSize: '4rem',
+			},
+			[theme.breakpoints.up('md')]: {
+				fontSize: '6rem',
+			},
+			[theme.breakpoints.up('lg')]: {
+				fontSize: '7rem',
+			},
 		},
 		mainHeader:{
 			background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
@@ -90,31 +101,29 @@ const useStyles = makeStyles((theme) => {
 const Main = () => {
 
 	const hideAboutBoxImg = useMediaQuery('(min-width:960px)');
-	const theme = useTheme();
 	const [darkMode, setDarkMode] = useGlobal('darkMode')
 
+	new WOW.WOW({
+		animateClass:'animate__animated',
+		live: false
+	}).init();
+
 	useEffect(() => {
+		document.title = 'Beranda';
+
 		const mainContentDOM = document.querySelector('#body');
-		console.log('triggered')
 		
 		if (mainContentDOM !== null) {
 			let { style } = mainContentDOM;
-			style.backgroundImage = `linear-gradient(180deg, ${theme.palette.background.default} 0%, rgba(209,209,209,0) 100%),url(${backgroundHeader})`
+			style.backgroundImage = `url(${backgroundHeader})`
 			style.backgroundPosition = 'top center'
 			style.backgroundAttachment = 'fixed'
 			style.backgroundRepeat = 'no-repeat'
 			style.backgroundSize = 'cover'
 		}
-	}, [darkMode])
 
-	useEffect(() => {
-		document.title = 'Beranda';
-
-		return new WOW.WOW({
-			animateClass:'animate__animated',
-			live: false
-		}).init();
-
+		return true
+		
 	}, [])
 
 	const classes = useStyles();
@@ -180,38 +189,57 @@ const Main = () => {
 				</Grid>
 				<Grid item xs={12}>
 					<Grid container spacing={2} className={classes.mt4} direction="row" justify="center">
-						<CardWhy title="Sekolah Terbaik">
-							SMK Bina Taruna Jalancagak adalah SMK terbaik di Wilayah Subang
-						</CardWhy>
-						<CardWhy title="Infrastruktur yang lengkap">
-							SMK Bina Taruna Jalancagak terdiri dari x ruang kelas, x ruang praktek, x kantin dan x teaching factory.
-						</CardWhy>
-						<CardWhy title="Pembimbing yang professional">
-							SMK Bina Taruna Jalancagak mempunyai banyak tenaga pendidik yang profesional di bidangnya
-						</CardWhy>
-						<CardWhy title="Kerjasama dengan industri besar">
-							SMK Bina Taruna Jalancagak bekerja sama dengan industri-industri ternama di indonesia
-						</CardWhy>
+						<CardWhy delayStart={.5} delayRange={.3}/>
 					</Grid>
 				</Grid>
 			</Grid>
 		)
 	}
 
-	const CardWhy = ({title, children}) => {
+	const CardWhy = ({delayStart, delayRange}) => {
+
+		var delay = delayStart;
+		const reasonData = [
+			{
+				title:"Sekolah terbaik",
+				desc:"<strong>SMK Bina Taruna Jalancagak</strong> adalah SMK terbaik di Wilayah Subang."
+			},
+			{
+				title:"Infrastruktur yang lengkap",
+				desc:"<strong>SMK Bina Taruna Jalancagak</strong> terdiri dari x ruang kelas, x ruang praktek, kantin, lapangan olahraga, <strong>Teaching Factory, Mini Hotel</strong>, dsb."
+			},
+			{
+				title:"Pembimbing yang professional",
+				desc:"<strong>SMK Bina Taruna Jalancagak</strong> mempunyai banyak tenaga pendidik yang profesional di bidangnya."
+			},
+			{
+				title:"Lembaga Sertifikasi Profesi",
+				desc:"<strong>SMK Bina Taruna Jalancagak</strong> mempunyai sertifikat <strong>LSP P1</strong> yang berfungsi sebagai Lembaga yang memastikan kompetensi dengan menyediakan <strong>Pendidikan Vokasi</strong> atau pekerjaan yang berdasarkan kualifikasi atau keahlian."
+			},
+			{
+				title:"Lulusannya mudah bekerja",
+				desc:"Siswa lulusan di <strong>SMK Bina Taruna Jalancagak</strong> mudah mencari pekerjaan karena kami mempunyai <strong>Bursa Kerja Khusus(BKK)</strong> yang akan memudahkan lulusan untuk mencari pekerjaan."
+			}
+		]
+
 		return(
-			<Grid item xs={12} md={6} lg={4}>
-				<Card>
-					<CardContent>
-						<Typography gutterBottom variant="h5" component="h2">
-							{title}
-						</Typography>
-						<Typography variant="body2" color="textSecondary" component="p">
-							{children || 'Kosong'}
-						</Typography>
-					</CardContent>
-				</Card>
-			</Grid>
+			<>
+			{reasonData.map((value, index) => {
+				delay = delay + delayRange;
+				return(
+					<Grid key={value.title} item xs={12} md={6} lg={4}>
+						<Card className="wow animate__fadeInLeft" data-wow-delay={`${delay}s`}>
+							<CardContent>
+								<Typography gutterBottom variant="h5" component="h2">
+									{value.title}
+								</Typography>
+								<Typography variant="body2" color="textSecondary" component="p" dangerouslySetInnerHTML={{ __html: value.desc }}/>
+							</CardContent>
+						</Card>
+					</Grid>
+				)
+			})}
+			</>
 		)
 	}
 

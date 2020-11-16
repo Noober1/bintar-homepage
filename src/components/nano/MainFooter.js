@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import propTypes from 'prop-types'
 import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Zoom, Fab, Tooltip } from '@material-ui/core'
 import { Facebook, Twitter, Mail, Room, Phone, AlternateEmail, KeyboardArrowUp } from '@material-ui/icons'
 
@@ -35,11 +34,32 @@ const useStyles = makeStyles((theme) => ({
 	chips:{
 		fontStyle:'italic',
 		backgroundColor:'transparent',
-		marginBottom:theme.spacing(.5)
+        marginBottom:theme.spacing(1),
+        height:'auto',
+        '& span':{
+            whiteSpace:'break-spaces'
+        }
 	},
 	noMargin:{
 		margin:'0!important'
-	}
+    },
+    socialMedia:{
+        marginTop:theme.spacing(2)
+    },
+    iconSocialMedia:{
+        [theme.breakpoints.up('xs')]: {
+            textAlign:'center'
+        },
+        [theme.breakpoints.up('sm')]: {
+            textAlign:'center'
+        },
+        [theme.breakpoints.up('md')]: {
+            textAlign:'right'
+        },
+        [theme.breakpoints.up('lg')]: {
+            textAlign:'right'
+        },
+    }
 }))
 
 const ScrollTop = (props) => {
@@ -72,16 +92,14 @@ const MainFooter = (props) => {
 
     const classes = useStyles()
 
-    const SocialMedia = (props) =>{
-
-        const { align } = props;
+    const SocialMedia = () =>{
     
         return(
-            <>
-            <Typography align={align} style={{marginBottom:4}}>
+            <div className={classes.socialMedia}>
+            <Typography className={classes.iconSocialMedia} style={{marginBottom:4}}>
                 <Link color="inherit" className={clsx(classes.textBold, classes.textUppercase)} href="/About">About</Link>
             </Typography>
-            <Typography align={align}>
+            <Typography className={classes.iconSocialMedia}>
                 <IconButton href="http://fb.me/binatarunasubang">
                     <Facebook fontSize="large"/>
                 </IconButton>
@@ -92,23 +110,22 @@ const MainFooter = (props) => {
                     <Mail fontSize="large"/>
                 </IconButton>
             </Typography>
-            </>
+            </div>
         )
     }
 
     return (
         <footer id="main-footer" className={classes.root}>
             <Container maxWidth="lg">
-                <Grid container spacing={5} className={classes.mainFooter}>
-                    <Grid item xs={12} md={12} lg={8}>
+                <Grid container className={classes.mainFooter}>
+                    <Grid item xs={12} md={8} lg={8}>
                         <Typography variant="h4" className={classes.mainFooterTitle}>
                             SMK Bina Taruna Jalancagak
                         </Typography>
                         <Chip
                             className={classes.chips}
                             avatar={<Room className={classes.noMargin}/>}
-                            label="Jl. Bunihayu No. 76 RT.18 / RW.03, Desa. Jalancagak, Kabupaten Subang, Jawa Barat 41281"
-                        /><br/>
+                            label="Jl. Bunihayu No. 76 RT.18 / RW.03 Desa. Jalancagak, Kabupaten Subang Jawa Barat 41281"/><br/>
                         <Chip
                             className={classes.chips}
                             avatar={<Phone className={classes.noMargin}/>}
@@ -120,18 +137,13 @@ const MainFooter = (props) => {
                             label="info@smkbintarjalacagak.sch.id"
                         />
                     </Grid>
-                    <Grid item xs={12} md={12} lg={4}>
-                        <Box display={{xs:'none',md:'none',lg:'block'}}>
+                    <Grid item xs={12} md={4} lg={4}>
+                        <Box display={{xs:'none',md:'block',lg:'block'}}>
                             <Link href="http://psmk.kemdikbud.go.id/">
                                 <img src={SMKBisa} alt="SMK Bisa" title="SMK Bisa" width="100%"/>
                             </Link>
                         </Box>
-                        <Box display={{xs:'none',md:'none',lg:'block'}}>
-                            <SocialMedia align="right"/>
-                        </Box>
-                        <Box display={{xs:'block',md:'block',lg:'none'}}>
-                            <SocialMedia align="center"/>
-                        </Box>
+                        <SocialMedia/>
                     </Grid>
                 </Grid>
             </Container>

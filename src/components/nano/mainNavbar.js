@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
         transition: 'all .3s ease-in-out!important'
     },
     subNavbar:{
-        borderBottom:'3px solid #5587fe'
+        borderBottom:'3px solid #5587fe',
+        boxShadow:`0 0 45px 45px ${theme.palette.background.default}`,
     },
 	title: {
 	  	flexGrow: 1,
