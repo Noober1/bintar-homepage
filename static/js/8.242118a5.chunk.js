@@ -1,0 +1,2 @@
+(this["webpackJsonpbintar-homepage"]=this["webpackJsonpbintar-homepage"]||[]).push([[8],{232:function(e,t,n){"use strict";n.r(t);var a=n(2),i=n(0);t.default=function(){return Object(i.useEffect)((function(){document.title="Tentang Kami"}),[]),Object(a.jsx)("div",{children:"about page here"})}}}]);
+//# sourceMappingURL=8.242118a5.chunk.js.map
