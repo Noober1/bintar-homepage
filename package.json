@@ -17,6 +17,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "react-samy-svg": "^3.0.7",
     "react-scripts": "4.0.0",
     "reactn": "^2.2.7",
     "web-vitals": "^0.2.4",
@@ -28,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -b web -d build"
   },
   "eslintConfig": {
     "extends": [
