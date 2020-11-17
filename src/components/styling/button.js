@@ -7,15 +7,19 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = {
     root: {
         background: 'linear-gradient(45deg, #926bfe 30%, #5388ff 90%)',
+        borderBottom: '3px solid',
         borderRadius: 50,
         border: 0,
         color: 'white',
         height: 48,
         padding: '0 30px',
-        transition:'all .3s ease-in-out',
+        transition:'box-shadow .3s ease-in-out',
         boxShadow: '0 0 5px 2px rgb(114 105 255 / 30%)',
         '&:hover':{
-            boxShadow: '0 0px 25px 25px rgb(114 105 255 / 30%)'
+            boxShadow: '0 10px 25px 25px rgb(114 105 255 / 30%)'
+        },
+        '&:focus':{
+            borderBottom:'none'
         }
     },
 };

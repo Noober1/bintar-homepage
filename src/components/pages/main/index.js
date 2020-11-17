@@ -10,12 +10,15 @@ import { Link } from 'react-router-dom';
 import WOW from 'wowjs';
 
 import backgroundHeader from '../../../assets/images/backgroundHeader.jpg'
+import backgroundStudy from '../../../assets/images/study.jpg'
+
 import hex2Rgba from '../../nano/hex2rgba'
 import { useGlobal } from 'reactn'
 import CustomDivider from '../../nano/customDivider'
 
 const useStyles = makeStyles((theme) => {
 	var bg = theme.palette.background.default
+	var solidBackground = `linear-gradient(${hex2Rgba(bg,.7)} 0%, ${hex2Rgba(bg,.7)} 100%)`;
 
 	return ({
 		title: {
@@ -23,7 +26,7 @@ const useStyles = makeStyles((theme) => {
 		},
 		aboutBG:{
 			position:'relative',
-			backgroundImage:`linear-gradient(${hex2Rgba(bg,.7)} 0%, ${hex2Rgba(bg,.7)} 100%),url(${aboutBackground})`,
+			backgroundImage:`${solidBackground},url(${aboutBackground})`,
 			backgroundRepeat:'no-repeat',
 			backgroundAttachment:'fixed',
 			backgroundPosition:'center',
@@ -51,6 +54,8 @@ const useStyles = makeStyles((theme) => {
 		titleText:{
 			fontFamily: 'Inter',
 			fontWeight: 'Bold',
+			textShadow:`4px 4px 0px ${bg}`,
+			textTransform:'uppercase',
 			[theme.breakpoints.up('xs')]: {
 				fontSize: '3rem',
 			},
@@ -65,7 +70,7 @@ const useStyles = makeStyles((theme) => {
 			},
 		},
 		mainHeader:{
-			background:`linear-gradient(180deg, transparent 0%, ${theme.palette.background.default} 75%, ${theme.palette.background.default} 100%)`
+			background:`linear-gradient(180deg, transparent 0%, ${bg} 75%, ${bg} 100%)`
 		},
 		boxContent:{
 			margin: theme.spacing(15, 0, 15, 0)
@@ -74,27 +79,30 @@ const useStyles = makeStyles((theme) => {
 			margin: theme.spacing(5, 0, 15, 0)
 		},
 		boxAffiliation:{
-			padding: theme.spacing(5, 0, 15, 0),
-			backgroundColor:theme.palette.background.default
+			padding: theme.spacing(15, 0, 15, 0),
+			animation:'bgstripes 2s infinite linear',
+			background:`linear-gradient(  45deg, #fff 25%,  #f2f2ee 25%,  #f2f2ee 50%,  #fff 50%,  #fff 75%,  #f2f2ee 75%,  #f2f2ee )`,
+			backgroundSize:'30px 30px',
+			color:'#303030'
 		},
 		iframeMaps:{
 			borderRadius:'30px'
 		},
 		titleMaps:{
-			fontFamily:'Visby',
-			color:theme.palette.background.default
+			color:bg
 		},
 		boxMaps:{
 			position:'relative',
+			boxShadow:`0 0 40px 10px ${theme.palette.text.primary}`,
 			backgroundColor:theme.palette.text.primary,
-			padding: theme.spacing(15, 0, 10, 0),
+			padding: theme.spacing(15, 0, 10, 0)
 		},
 		boxIntro:{
 			backgroundPosition:'bottom left',
 			backgroundSize:'contain',
 			backgroundRepeat:'no-repeat',
 			height:'100%',
-			opacity:.9
+			opacity:.9,
 		},
 		boxIntroImg:{
 			backgroundImage:`url(${HeadMaster})`,
@@ -109,11 +117,37 @@ const useStyles = makeStyles((theme) => {
 			maxWidth: '100vw',
 		},
 		backgroundTheme: {
-			backgroundColor:theme.palette.background.default
+			backgroundColor:bg
 		},
 		aboutReadMore: {
 			fontFamily:'Inter',
 			marginTop: theme.spacing(4)
+		},
+		studyContent:{
+			transition:'all .3s ease-in-out',
+			position:'relative',
+			clipPath: "polygon(0 10%, 100% 0, 100% 100%, 0 90%)",
+			padding:theme.spacing(10),
+			'&:before':{
+				transition:'all .3s ease-in-out',
+				clipPath: "polygon(0 10%, 100% 0, 100% 90%, 0 100%)",
+				zIndex:-1,
+				background:`${solidBackground},url(${backgroundStudy}) no-repeat center center fixed`,
+				backgroundSize:'cover',
+				position:'absolute',
+				top:'50%',
+				left:0,
+				content:'""',
+				width:"100%",
+				height:0
+			},
+			'&:hover':{
+				color:theme.palette.text.primary,
+			},
+			'&:hover::before':{
+				top:0,
+				height:"100%"
+			},
 		},
 		mt4:{
 			marginTop:theme.spacing(4)
@@ -191,7 +225,7 @@ const Main = () => {
 			<Grid container className="wow animate__fadeInUp" data-wow-offset="250">
 				<Grid item xs={12}>
 					<Container maxWidth="lg">
-						<Typography variant="h4" align="center" style={{marginBottom:10}}>
+						<Typography variant="h3" align="center" style={{marginBottom:10}}>
 							Tentang Sekolah
 						</Typography>
 						<Typography style={{fontFamily:'InterNormal'}} align="center">
@@ -208,9 +242,9 @@ const Main = () => {
 
 	const Why = () => {
 		return(
-			<Grid container className={clsx(classes.boxWhy, "wow animate__bounceInLeft")} data-wow-offset="200">
+			<Grid container className={clsx(classes.boxWhy, "wow animate__bounceInLeft")} data-wow-offset="250">
 				<Grid item xs={12}>
-					<Typography variant="h4" align="center" style={{marginBottom:10}}>
+					<Typography variant="h3" align="center" style={{marginBottom:10}}>
 						Kenapa harus sekolah di SMK Bina Taruna Jalancagak?
 					</Typography>
 					<Typography style={{fontFamily:'InterNormal'}} align="center">
@@ -275,8 +309,17 @@ const Main = () => {
 
 	const StudyList = () => {
 		return(
-			<Grid container className={classes.boxContent}>
-				ss
+			<Grid container className={classes.backgroundTheme}>
+				<Grid item xs={12} className={clsx(classes.studyContent,"wow animate__bounceInUp")}>
+					<Container fixed>
+						<Typography variant="h3" align="center" style={{marginBottom:10}}>
+							Bidang Studi Keahlian
+						</Typography>
+						<Typography variant="subtitle1" align="center">
+							SMK Bina Taruna Jalancagak terdiri dari 5 bidang studi keahlian
+						</Typography>
+					</Container>
+				</Grid>
 			</Grid>
 		)
 	}
@@ -284,8 +327,9 @@ const Main = () => {
 	const Affiliation = () => {
 		return(
 			<Grid container className={classes.boxAffiliation} style={{position:'relative'}}>
+				<CustomDivider variant="line" className={classes.customTopDivider} fill={theme.palette.background.default}/>
 				<Grid item xs={12} style={{marginBottom:30}} className="wow animate__backInUp" data-wow-offset="350">
-							<Typography variant="h4" align="center" style={{marginBottom:10}}>
+							<Typography variant="h3" align="center" className={classes.VisbyBold} style={{marginBottom:10}}>
 								Kerjasama Industri
 							</Typography>
 							<Typography style={{fontFamily:'InterNormal'}} align="center">
@@ -308,9 +352,8 @@ const Main = () => {
 	const Maps = () => {
 		return(
 			<Grid container className={clsx(classes.boxMaps)}>
-				<CustomDivider variant="line" className={classes.customTopDivider} fill={theme.palette.background.default}/>
 				<Grid item xs={12} style={{marginBottom:'3rem'}}>
-					<Typography variant="h4" align="center" className={classes.titleMaps}>
+					<Typography variant="h3" align="center" className={clsx(classes.titleMaps,classes.VisbyBold)}>
 						Temukan Kami
 					</Typography>
 					<Typography variant="subtitle1" align="center" className={classes.titleMaps}>
@@ -320,7 +363,7 @@ const Main = () => {
 				<Grid item xs={12} >
 					<Container>
 						<Paper className={classes.iframeMaps}>
-							<iframe title="Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253658.89923356072!2d107.4289214851453!3d-6.594570112714671!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69226e7a838ddb%3A0x35c5aa1b9dfb3a2c!2sSMK%20Bina%20Taruna%20Jalancagak!5e0!3m2!1sen!2sid!4v1568446142651!5m2!1sen!2sid" width="100%" height="500px" frameBorder="0" className={classes.iframeMaps} style={{border:0}} allowFullScreen></iframe>
+							<iframe title="Google Maps" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2802.102152796583!2d107.67534712538159!3d-6.6752864233826825!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69226e7a838ddb%3A0x35c5aa1b9dfb3a2c!2sSMK%20Bina%20Taruna%20Jalancagak!5e0!3m2!1sen!2sid!4v1605629983244!5m2!1sen!2sid" width="100%" height="500px" frameBorder="0" className={classes.iframeMaps} style={{border:0}} allowFullScreen></iframe>
 						</Paper>
 					</Container>
 				</Grid>
@@ -354,10 +397,8 @@ const Main = () => {
 				<Container maxWidth="lg">	
 					<Why />
 				</Container>
-				{/* <Container maxWidth="lg">	
-					<StudyList />
-				</Container> */}
 			</Grid>
+			<StudyList />
 			<Affiliation />
 			<Maps />
 		</>
