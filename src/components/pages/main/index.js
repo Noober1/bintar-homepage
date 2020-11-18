@@ -25,6 +25,7 @@ const Main = () => {
 
 		new WOW({
 			animateClass:'animate__animated',
+			mobile:false,
 			live: false
 		}).init();
 
