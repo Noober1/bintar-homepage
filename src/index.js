@@ -17,7 +17,8 @@ const getNavBarIndicator = () => {
 
 setGlobal({
     navBarIndicator:getNavBarIndicator(),
-    darkMode:getDarkModeState()
+    darkMode:getDarkModeState(),
+    webName:'SMK Bina Taruna Jalancagak'
 });
 
 ReactDOM.render(
