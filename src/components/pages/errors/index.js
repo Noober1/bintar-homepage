@@ -5,10 +5,6 @@ import ErrorOther from '../../../assets/icons/044-error.png'
 import React, { useEffect } from 'react'
 
 var useStyles = makeStyles((theme) => ({
-    root:{
-        padding:theme.spacing(5,0,5,0),
-        minHeight:'100vh'
-    },
     image:{
         maxWidth:'300px'
     },
@@ -38,7 +34,7 @@ const ErrorPage = ({ type }) => {
     }
 
     return (
-        <Container maxWidth="lg" className={classes.root}>
+        <Container maxWidth="lg">
             <Typography align="center">
                 <CustomLink to="/">
                     <img className={classes.image} src={ErrorImage} title="Error" alt="Error"/>

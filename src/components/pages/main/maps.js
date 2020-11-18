@@ -3,6 +3,7 @@ import clsx from 'clsx'
 import { Grid, Typography, Paper, Container, useTheme } from '@material-ui/core'
 import CustomDivider from '../../nano/customDivider'
 import mainStyles from './styles'
+import CustomTitle from '../../nano/customTitle'
 
 const Maps = () => {
 
@@ -12,9 +13,7 @@ const Maps = () => {
     return(
         <Grid container className={clsx(classes.boxMaps)}>
             <Grid item xs={12} style={{marginBottom:'3rem'}}>
-                <Typography variant="h3" align="center" className={clsx(classes.titleMaps,classes.VisbyBold)}>
-                    Temukan Kami
-                </Typography>
+                <CustomTitle childrenStyle={{color:theme.palette.background.default,textShadow:'none'}}>Temukan Kami</CustomTitle>
                 <Typography variant="subtitle1" align="center" className={classes.titleMaps}>
                     Silahkan kunjungi kami di alamat yang tertera pada peta di bawah ini
                 </Typography>

@@ -2,6 +2,7 @@ import React from 'react'
 import { Grid, Typography, Paper, Container, useTheme } from '@material-ui/core'
 import CustomDivider from '../../nano/customDivider'
 import mainStyles from './styles'
+import CustomTitle from '../../nano/customTitle'
 
 const Affiliation = () => {
 
@@ -12,9 +13,7 @@ const Affiliation = () => {
         <Grid container className={classes.boxAffiliation} style={{position:'relative'}}>
             <CustomDivider variant="line" className={classes.customTopDivider} fill={theme.palette.background.default}/>
             <Grid item xs={12} style={{marginBottom:30}} className="wow animate__backInUp" data-wow-offset="350">
-                        <Typography variant="h3" align="center" className={classes.VisbyBold} style={{marginBottom:10}}>
-                            Kerjasama Industri
-                        </Typography>
+                        <CustomTitle childrenStyle={{textShadow:'none'}}>Kerjasama Industri</CustomTitle>
                         <Typography style={{fontFamily:'InterNormal'}} align="center">
                             Kami juga bekerja sama dengan beberapa industri besar
                         </Typography>

@@ -1,11 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Zoom, Fab, Tooltip, useTheme } from '@material-ui/core'
+import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Fab, Zoom, useTheme } from '@material-ui/core'
 import { Facebook, Twitter, Mail, Room, Phone, AlternateEmail, KeyboardArrowUp } from '@material-ui/icons'
 
 
 import SMKBisa from '../../assets/images/smkbisa.png'
-import CustomDivider from './customDivider'
+import CustomTooltip from './customTooltip'
 
 const useStyles = makeStyles((theme) => ({
     backToTop:{
@@ -157,11 +157,11 @@ const MainFooter = (props) => {
                 </Typography>
             </Container>
             <ScrollTop {...props}>
-                <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title="Kembali ke atas" aria-label="Mode Gelap">
-                    <Fab color="primary" size="large" aria-label="Klik untuk kembali ke atas">
+                <CustomTooltip placement="left" title="Klik untuk kembali ke atas">
+                    <Fab color="primary" size="large" aria-label="Kembali ke atas">
                         <KeyboardArrowUp style={{fontSize:40}}/>
                     </Fab>
-                </Tooltip>
+                </CustomTooltip>
             </ScrollTop>
         </footer>
     )

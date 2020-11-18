@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react'
+import React, { Suspense } from 'react'
 import { CssBaseline } from '@material-ui/core'
 import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import { AppContainer, MainFooter, MainNavbar, Fallback, ErrorBoundary } from './components/nano'
@@ -7,44 +7,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import { Main, About, Posts, ErrorPage } from './components/pages'
 
-const darkTheme = {
-	overrides: {
-		MuiAppBar: {
-			colorDefault: {
-				backgroundColor: '#1a1a2e',
-			},
-		},
-	},
-	palette: {
-		type: 'dark',
-		primary: {
-			main:'#1a1a2e'
-		}
-	}
-};
-
-const lightTheme = {
-	overrides: {
-		MuiAppBar: {
-			colorDefault: {
-				backgroundColor: '#fff',
-			},
-			colorPrimary: {
-				backgroundColor: '#e8e8e8'
-			}
-		},
-	},
-	palette: {
-		type:'light',
-		primary: {
-			main:'#fff'
-		}
-	}
-};
+import { ThemeStyle } from './components/styling/'
 
 const useStyles = makeStyles((theme) => ({
 	root:{
-		flexGrow:1
+		flexGrow:1,
 	},
 	menuButton: {
 	  	marginRight: theme.spacing(2),
@@ -66,9 +33,9 @@ const App = () => {
 
 	const classes = useStyles();
 	
-	const [ darkMode, setDarkMode ] = useGlobal('darkMode');
+	const [ darkMode ] = useGlobal('darkMode');
 
-	const theme = createMuiTheme(darkMode ? darkTheme : lightTheme)
+	const theme = createMuiTheme(darkMode ? ThemeStyle('dark') : ThemeStyle('light'))
 
 	return (
 		<ThemeProvider theme={theme}>

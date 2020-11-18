@@ -31,6 +31,18 @@
 	100% {  background-position-x: -30px;  }
 }
 
+/*
+	basic styling start
+*/
+
+::-moz-selection {
+	background: transparent;
+}
+
+::selection {
+	background: transparent;
+}
+
 .transition300 {
 	transition: all .3s ease-in-out;
 }
@@ -39,12 +51,19 @@
 	font-family: 'Inter';
 }
 
+
+/*
+	Navigation Bar with interactive indicator style start
+*/
+
 // How many menu items do we have?f
 $menu-items: 5;
 
 // Colours
 $background-color: #121212;
-$indicator-color: #5587fe;
+$secondary-color: #faf005;
+$primary-color: #5587fe;
+$indicator-color: #faf005;
 
 // Transition Speed
 $transition-speed: .5s;
@@ -159,7 +178,7 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 
 			&:before {
 				border: 6px solid transparent;
-				border-top-color: $indicator-color;
+				border-top-color: $primary-color;
 				width: 0;
 				height: 0;
 				top: 5px;
@@ -167,7 +186,7 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 				margin-left: -3px;
 			}
 			&:after {
-				background: $indicator-color;
+				background: $primary-color;
 				top: 0px;
 				height:5px;
 				left: 0;
@@ -234,10 +253,7 @@ $menu-items-loop-offset: $menu-items - 1; // the number of items in the menu
 		clear: both;
 }
 
-// Presentation Styling
 
-.toggle {
-		color: #fff;
-		font-family: sans-serif;
-		text-align: center;
-}
+/*
+	Navigation Bar with interactive indicator style end
+*/

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardContent, Grid, Typography } from '@material-ui/core'
 import mainStyles from './styles'
+import CustomTitle from '../../nano/customTitle'
 
 const Why = () => {
 
@@ -51,14 +52,14 @@ const Why = () => {
 			})}
 			</>
 		)
-	}
+    }
 
     return(
         <Grid container className={classes.boxWhy}>
             <Grid item xs={12} className="wow animate__bounceInLeft" data-wow-offset="250">
-                <Typography variant="h3" align="center" className={classes.VisbyBold} style={{marginBottom:10}}>
-                    Kenapa harus sekolah di SMK Bina Taruna Jalancagak?
-                </Typography>
+                <CustomTitle>
+                    Keunggulan
+                </CustomTitle>
                 <Typography style={{fontFamily:'InterNormal'}} align="center">
                     Berikut beberapa keunggulan SMK Bina Taruna Jalancagak
                 </Typography>

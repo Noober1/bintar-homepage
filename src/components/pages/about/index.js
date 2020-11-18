@@ -1,3 +1,4 @@
+import { Container, Grid } from '@material-ui/core';
 import React, { useEffect } from 'react'
 
 const About = () => {
@@ -7,9 +8,13 @@ const About = () => {
     }, [])
     
     return (
-        <div>
-            about page here
-        </div>
+        <Grid>
+            <Grid item xs={12}>
+                <Container>
+                    test
+                </Container>
+            </Grid>
+        </Grid>
     )
 }
 

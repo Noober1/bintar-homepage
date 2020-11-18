@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
-import { Grid, Typography, Container, Divider, Box, useMediaQuery, Paper } from '@material-ui/core'
+import { Grid, Typography, Container, Divider, Box, useMediaQuery } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
-import WOW from 'wowjs';
+import { WOW } from 'wowjs';
 
 import backgroundHeader from '../../../assets/images/backgroundHeader.jpg'
 
 import { useGlobal } from 'reactn'
-import CustomDivider from '../../nano/customDivider'
 import mainStyles from './styles';
 
 import Maps from './maps'
@@ -21,13 +20,13 @@ const Main = () => {
 	const hideAboutBoxImg = useMediaQuery('(min-width:960px)');
 	const [ webName ] = useGlobal('webName')
 
-	new WOW.WOW({
-		animateClass:'animate__animated',
-		live: true
-	}).init();
-
 	useEffect(() => {
 		document.title = `Selamat datang di ${webName}`;
+
+		new WOW({
+			animateClass:'animate__animated',
+			live: false
+		}).init();
 
 		const mainContentDOM = document.querySelector('#body');
 		

@@ -8,6 +8,7 @@ import { useGlobal } from 'reactn';
 
 import IconImage from '../../assets/icons/icon.png'
 import { NavLink, Link as RouterLink } from 'react-router-dom';
+import CustomTooltip from './customTooltip';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -15,8 +16,22 @@ const useStyles = makeStyles((theme) => ({
         boxShadow:'none',
         transition: 'all .3s ease-in-out!important'
     },
+    primaryNav:{
+        '& .Nav-item':{
+            textShadow:`1px 1px 0px ${theme.palette.background.default}`
+        },
+        '&.with-indicator .Nav-item':{
+            '&:last-child::before':{
+                borderTopColor:theme.palette.borderNav
+            },
+            '&:last-child::after':{
+                backgroundColor:theme.palette.borderNav,
+            }
+    
+        }
+    },
     subNavbar:{
-        borderBottom:'3px solid #5587fe',
+        borderBottom:`2px solid ${theme.palette.borderNav}`,
         boxShadow:`0 0 45px 45px ${theme.palette.background.default}`,
     },
 	title: {
@@ -105,7 +120,7 @@ const MainNavbar = (props) => {
         right: false,
     });
 
-    const handleToogleDarkMode = () => {
+    const handleToggleDarkMode = () => {
 		localStorage.setItem('darkMode',!darkMode)
         setDarkMode(!darkMode)
     }
@@ -163,7 +178,7 @@ const MainNavbar = (props) => {
             {MenuDrawer("top")}
         </Drawer>
         <Box display={{ xs: 'none', sm: 'none', md: 'block' }} >
-            <AppBar position="static" className={classes.subNavbar} color="primary" id="subNavbar">
+            <AppBar position="static" className={classes.subNavbar} id="subNavbar">
                 <Toolbar variant="dense">
                     <Link className={classes.topNavLink} color="inherit" href="http://sas.smkbintarjalancagak.sch.id/">
                         SAS
@@ -175,7 +190,7 @@ const MainNavbar = (props) => {
             </AppBar>
         </Box>
         <HideOnScroll {...props}>
-            <AppBar id="mainNavbar" position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'default' : 'transparent'} className={classes.root} style={{
+            <AppBar id="mainNavbar" position={elevationTrigger ? 'sticky' : 'static'} color={elevationTrigger ? 'inherit' : 'transparent'} className={classes.root} style={{
                 padding: elevationTrigger ? '0rem' : '0rem 0rem 1.5rem 0rem',
             }}>
                 <Container maxWidth="lg">
@@ -200,11 +215,16 @@ const MainNavbar = (props) => {
                                 <MenuIcon />
                             </IconButton>
                         </Box>
-                        <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
-                            <IconButton color="inherit" onClick={handleToogleDarkMode}>
+                        <CustomTooltip title={<Typography color="inherit">Tooltip with HTML</Typography>}>
+                            <IconButton color="inherit" onClick={handleToggleDarkMode}>
                                 {darkMode ? <Brightness7/> : <Brightness4/>}
                             </IconButton>
-                        </Tooltip>
+                        </CustomTooltip>
+                        {/* <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
+                            <IconButton color="inherit" onClick={handleToggleDarkMode}>
+                                {darkMode ? <Brightness7/> : <Brightness4/>}
+                            </IconButton>
+                        </Tooltip> */}
                     </Toolbar>
                 </Container>
             </AppBar>

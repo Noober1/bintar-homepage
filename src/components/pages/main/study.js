@@ -2,6 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { Grid, Typography, Container } from '@material-ui/core'
 import mainStyles from './styles'
+import CustomTitle from '../../nano/customTitle'
 
 const StudyList = () => {
 
@@ -11,9 +12,7 @@ const StudyList = () => {
         <Grid container className={classes.backgroundTheme}>
             <Grid item xs={12} className={clsx(classes.studyContent,"wow animate__bounceInUp")} data-wow-offset="150">
                 <Container fixed>
-                    <Typography variant="h3" align="center" className={clsx(classes.VisbyBold)} style={{marginBottom:10}}>
-                        Bidang Studi Keahlian
-                    </Typography>
+                    <CustomTitle>Bidang Studi Keahlian</CustomTitle>
                     <Typography variant="subtitle1" align="center">
                         SMK Bina Taruna Jalancagak terdiri dari 5 bidang studi keahlian
                     </Typography>

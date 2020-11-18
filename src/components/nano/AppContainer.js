@@ -1,3 +1,4 @@
+import { useTheme } from '@material-ui/core';
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useGlobal } from 'reactn';
@@ -7,6 +8,8 @@ const AppContainer = (props) => {
 
 	const history = useHistory();
 	const [ indicator, setIndicator ] = useGlobal('navBarIndicator');
+
+	const theme = useTheme()
 
 	useEffect(() => {
 
@@ -45,7 +48,7 @@ const AppContainer = (props) => {
 	}, [])
 
 	return (
-		<>{props.children}</>
+		<div style={{padding:theme.spacing(5,0,0,0),minHeight:'100vh'}}>{props.children}</div>
 	)
 }
 

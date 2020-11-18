@@ -143,7 +143,7 @@ const mainStyles = makeStyles((theme) => {
 		},
 		paperPadding:{
 			padding:theme.spacing(3)
-		},
+        },
 		VisbyBold:{
 			fontFamily:'VisbyBold'
 		}
