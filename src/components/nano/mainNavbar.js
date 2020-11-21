@@ -215,16 +215,11 @@ const MainNavbar = (props) => {
                                 <MenuIcon />
                             </IconButton>
                         </Box>
-                        <CustomTooltip title={<Typography color="inherit">Tooltip with HTML</Typography>}>
+                        <CustomTooltip title={<Typography color="inherit">{darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'}</Typography>} aria-label="Model Gelap">
                             <IconButton color="inherit" onClick={handleToggleDarkMode}>
                                 {darkMode ? <Brightness7/> : <Brightness4/>}
                             </IconButton>
                         </CustomTooltip>
-                        {/* <Tooltip arrow={true} TransitionComponent={Zoom} placement="left" title={darkMode ? 'Matikan Mode Gelap' : 'Aktifkan Mode Gelap'} aria-label="Mode Gelap">
-                            <IconButton color="inherit" onClick={handleToggleDarkMode}>
-                                {darkMode ? <Brightness7/> : <Brightness4/>}
-                            </IconButton>
-                        </Tooltip> */}
                     </Toolbar>
                 </Container>
             </AppBar>

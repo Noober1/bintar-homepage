@@ -22,9 +22,7 @@ const ErrorPage = ({ type }) => {
 
     useEffect(() => {
         document.title = 'Halaman tidak ditemukan'
-
-        const anchor = document.querySelector('#subNavbar');
-        anchor.scrollIntoView({block: 'center' })
+        document.querySelector('#subNavbar').scrollIntoView({block: 'center' })
     }, [])
 
     const CustomLink = ({to,children}) => {

@@ -4,7 +4,8 @@ import React, { useEffect } from 'react'
 const About = () => {
     
     useEffect(() => {
-		document.title = 'Tentang Kami';
+        document.title = 'Tentang Kami';
+        document.querySelector('#subNavbar').scrollIntoView({block: 'center' })
     }, [])
     
     return (
