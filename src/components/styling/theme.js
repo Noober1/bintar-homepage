@@ -32,6 +32,6 @@ const lightTheme = {
 	}
 };
 
-const ThemeStyle = (type) => type == 'dark' ? darkTheme : lightTheme
+const ThemeStyle = (type) => type === 'dark' ? darkTheme : lightTheme
 
 export default ThemeStyle

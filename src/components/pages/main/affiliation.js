@@ -22,7 +22,28 @@ const Affiliation = () => {
                 <Paper className={classes.paperPadding}>
                     <Grid item xs={12} style={{margin:3}}>
                         <Typography align="center">
-                            <a href="https://auto2000.co.id" target="_blank" rel="noopener noreferrer" title="Toyota Auto2000"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/auto2000-mini-150x140.png" width="150" height="140" alt="" className="wp-image-640 alignnone size-thumbnail" /></a>    <a href="https://www.yamaha-motor.co.id" target="_blank" rel="noopener noreferrer" title="Yamaha"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/yamaha-mini-1-150x140.png" width="150" height="140" alt="Yamaha" className="wp-image-697 alignnone size-thumbnail" /></a>    <a href="https://www.telkom.co.id/" target="_blank" rel="noopener noreferrer" title="Telkom Indonesia"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/telkom-mini-150x140.png" width="150" height="140" alt="" className="wp-image-646 alignnone size-thumbnail" /></a>   <a href="https://aqua.co.id/" target="_blank" rel="noopener noreferrer" title="Aqua Danone"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/aqua-mini-150x140.png" width="150" height="140" alt="Aqua Danone" className="wp-image-702 alignnone size-thumbnail" /></a>    <a href="https://graciaspa.com/" target="_blank" rel="noopener noreferrer" title="Gracia Spa Resort"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/gracia-mini-150x140.png" width="150" height="140" alt="" className="wp-image-641 alignnone size-thumbnail" /></a>    <a href="http://prama-grand-preanger.bandung-hotels.com/en/" target="_blank" rel="noopener noreferrer" title="Prama Grand Preanger Bandung"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/prama-mini-150x140.png" width="150" height="140" alt="Prama Grand Preanger Bandung" className="wp-image-698 alignnone size-thumbnail" /></a>   <img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/prn-mini-150x140.png" width="150" height="140" alt="PT. Perkakas Rekadaya Nusantara" className="wp-image-701 alignnone size-thumbnail" />   <a href="http://bandung.jayakartahotelsresorts.com" target="_blank" rel="noopener noreferrer" title="Jayakarta Hotel Bandung"><img src="https://smkbintarjalancagak.sch.id/wp-content/uploads/2019/09/jayakarta-mini-150x140.png" width="150" height="140" alt="Jayakarta Hotel Bandung" className="wp-image-703 alignnone size-thumbnail" /></a>
+                            <a href="https://auto2000.co.id" target="_blank" rel="noopener noreferrer" title="Toyota Auto2000">
+                                <img src="/auto2000.png" width="150" height="140" alt="" className="wp-image-640 alignnone size-thumbnail" />
+                            </a>
+                            <a href="https://www.yamaha-motor.co.id" target="_blank" rel="noopener noreferrer" title="Yamaha">
+                                <img src="/yamaha.png" width="150" height="140" alt="Yamaha" className="wp-image-697 alignnone size-thumbnail" />
+                            </a>
+                            <a href="https://www.telkom.co.id/" target="_blank" rel="noopener noreferrer" title="Telkom Indonesia">
+                                <img src="/telkom.png" width="150" height="140" alt="" className="wp-image-646 alignnone size-thumbnail" />
+                            </a>
+                            <a href="https://aqua.co.id/" target="_blank" rel="noopener noreferrer" title="Aqua Danone">
+                                <img src="/aqua.png" width="150" height="140" alt="Aqua Danone" className="wp-image-702 alignnone size-thumbnail" />
+                            </a>
+                            <a href="https://graciaspa.com/" target="_blank" rel="noopener noreferrer" title="Gracia Spa Resort">
+                                <img src="/gracia.png" width="150" height="140" alt="" className="wp-image-641 alignnone size-thumbnail" />
+                                </a>
+                            <a href="http://prama-grand-preanger.bandung-hotels.com/en/" target="_blank" rel="noopener noreferrer" title="Prama Grand Preanger Bandung">
+                                <img src="/prama.png" width="150" height="140" alt="Prama Grand Preanger Bandung" className="wp-image-698 alignnone size-thumbnail" />
+                            </a>
+                            <img src="/perkakas-rekadaya-nusantara.png" width="150" height="140" alt="PT. Perkakas Rekadaya Nusantara" className="wp-image-701 alignnone size-thumbnail" />
+                            <a href="http://bandung.jayakartahotelsresorts.com" target="_blank" rel="noopener noreferrer" title="Jayakarta Hotel Bandung">
+                                <img src="/jayakarta.png" width="150" height="140" alt="Jayakarta Hotel Bandung" className="wp-image-703 alignnone size-thumbnail" />
+                            </a>
                         </Typography>
                     </Grid>
                 </Paper>

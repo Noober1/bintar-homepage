@@ -21,8 +21,7 @@ const mainStyles = makeStyles((theme) => {
 			backgroundAttachment:'fixed',
 			backgroundPosition:'center',
 			backgroundSize:'cover',
-            alignItems:'center',
-			alignItems:'center'
+            alignItems:'center'
 		},
 		customBottomDivider:{
 			width:'100%',

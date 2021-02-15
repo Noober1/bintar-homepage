@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Fab, Zoom, useTheme } from '@material-ui/core'
+import { Container, Box, makeStyles, Grid, Typography, Chip, Link, IconButton, useScrollTrigger, Fab, Zoom } from '@material-ui/core'
 import { Facebook, Twitter, Mail, Room, Phone, AlternateEmail, KeyboardArrowUp } from '@material-ui/icons'
 
 
@@ -94,7 +94,6 @@ const ScrollTop = (props) => {
 const MainFooter = (props) => {
 
     const classes = useStyles()
-    const theme = useTheme()
 
     const SocialMedia = () =>{
     

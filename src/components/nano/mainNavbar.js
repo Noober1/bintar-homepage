@@ -94,19 +94,19 @@ const MainNavbar = (props) => {
         },
         {
             text:"Ekstrakurikuler",
-            to:"/Extracurricular"
+            to:"/NotFound"
         },
         {
             text:"Bidang Studi",
-            to:"/Majors"
+            to:"/NotFound"
         },
         {
             text:"Artikel",
-            to:"/Posts"
+            to:"/NotFound"
         },
         {
             text:"Tentang",
-            to:"/About"
+            to:"/NotFound"
         }
     ]
 
